@@ -16,14 +16,15 @@ const getAllPostsWithComments = async () => {
             ))
             FROM comment c
             WHERE c.post_id = p.id AND c.is_deleted = false
-            GROUP BY c.id, c.creator, c.content, c.publish_date, c.last_update
-            ORDER BY c.publish_date DESC
           ), '[]'::json) as comments
         FROM post p
         WHERE p.is_deleted = false
         ORDER BY p.publish_date DESC
         `
   );
+
+  // GROUP BY c.id, c.creator, c.content, c.publish_date, c.last_update
+  // ORDER BY c.publish_date DESC
 
   return res.rows;
 };
